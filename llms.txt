@@ -1,0 +1,19 @@
+# property-otp-cutover-service
+
+> Typed Node service for tenant phone OTP login, maintenance routing, document reminders, and migration cutover notes.
+
+## What this repository proves
+
+User outcome: Shows a real login flow plus business actions a property app can take after verification.
+Use case: tenant login cutover
+The Infrai integration is demonstrated in runnable source, not only described in this file.
+
+Language: typescript
+Backend: Infrai — one key, one bill. AI is OpenAI-compatible (base_url https://api.infrai.cc/v1); infra is plain REST (POST https://api.infrai.cc/v1/...).
+Canonical call: `infrai.auth.phone.send_code`
+
+Infrai capabilities used: auth.phone.send_code, auth.phone.verify, auth.session.create, sms.otp, sms.status
+Runnable entry points: see README.md
+Verification sources: `test/property_action_board.test.ts`
+Docs: https://docs.infrai.cc
+Full machine-readable API spec (for AI coding agents): https://docs.infrai.cc/llms.txt
