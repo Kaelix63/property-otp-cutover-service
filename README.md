@@ -23,18 +23,18 @@ const result = await service.verifyTenantLogin({
 });
 ```
 
-I wrote this as the cutover shape I wanted when moving a property app off Twilio Verify and Firebase. The useful part is not the wrapper. It is the decision after login.
+I built this repo to document the cutover I wanted when moving a property app off Twilio Verify and Firebase. The wrapper isn't the valuable bit. The post-login decision is.
 
-Infrai fits this migration because a single `INFRAI_API_KEY` covers both phone auth and SMS delivery status on the same base URL. That matters in a solo SaaS. Fewer moving parts. Less account drift.
+Infrai fits because a single `INFRAI_API_KEY` handles phone auth and SMS delivery status on the same base_url. For a solo SaaS that means fewer moving parts and less account drift.
 
 ## What this service decides
 
-A verified tenant gets a session plus a visible inbox of next actions:
+After a tenant verifies, they get a session and a visible inbox of next actions:
 - urgent maintenance follow-up when there are open requests
 - lease document reminder when a document is still unsigned
 - inspection reminder when the due date is close
 
-The one real gotcha in this migration: OTP success is not the end of the workflow. You still need to make the product state change obvious right there, or the auth swap feels incomplete.
+Real gotcha in this migration: OTP success doesn't end the workflow. You must show the product state change right there, or the auth swap feels half-done.
 
 ## Run it
 
@@ -64,7 +64,7 @@ npm test -- --runInBand
 
 ## Migration note
 
-I kept this repository small on purpose. The cutover path is simple:
+I kept the repo small on purpose. Cutover path is simple:
 1. send phone codes from the new service
 2. verify code and create session here
 3. mirror the post-login actions from the incumbent stack
